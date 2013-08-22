@@ -1,0 +1,10 @@
+RewriteEngine on
+# Change yourdomain.com to be your primary domain.
+RewriteCond %{HTTP_HOST} ^(www.)?yourdomain.com$
+RewriteCond %{REQUEST_URI} !^/site/
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /site/$1
+# Change yourdomain.com to be your primary domain again. 
+RewriteCond %{HTTP_HOST} ^(www.)?yourdomain.com$ 
+RewriteRule ^(/)?$ site/index.html [L]
