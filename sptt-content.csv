@@ -1,5 +1,6 @@
 status,category,title,description,image,external link
-publish,Features,No database,"simplitt stores all your content in a single flat file.",,
+publish,Features,No database,"simplitt stores all your content in a single flat file.",600-130609-escampistival-09.png,
 publish,Features,Static site,"simplitt generates a complete static site from your single data file: home page, category pagesand post pages.",,
 publish,Features,No installation,"simplitt needs no installation. Just set up some parameters and upload the files to your server.",,
 publish,Features,Easy update,"simplitt makes all the work: just run a script and simplitt will recompile and update your entire site.",,
+publish,Features,No description,,,

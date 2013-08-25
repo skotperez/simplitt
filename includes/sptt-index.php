@@ -10,16 +10,19 @@
 // $link -- more info link (URL)
 // $perma -- link to single page of the post (URL)
 
-if ( $img != $img_path ) { $figure = "<figure><img src='" .$img. "' alt='" .$img_alt. "' /></figure>"; }
-else { $figure = ""; }
-if ( $desc != '' ) { $content = "<div>" .$desc. "</div>"; }
-else { $content = ""; }
-$post_footer = "<footer><a href='" .$perma. "'>Permalink</a></footer>";
+if ( sptt_post_has_image() ) { $post_img = "<figure><img src='" .$img. "' alt='" .$img_alt. "' /></figure>"; }
+else { $post_img = ""; }
+if ( sptt_post_has_description() ) { $post_desc = "<div>" .$desc. "</div>"; }
+else { $post_desc = ""; }
+
 $content = "
-	<article>
-		" .$figure. "
-		<header>" .$tit. "</header>
-		" .$content.$post_footer. "
-	</article>
+<article>
+<div>
+	" .$post_img. "
+	<header><h3>" .$tit. "</h3></header>
+	" .$post_desc. "
+	<footer><a href='" .$perma. "' title='" .$tit. "'>Permalink</a></footer>
+</div>
+</article>
 ";
 ?>

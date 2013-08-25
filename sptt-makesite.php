@@ -31,7 +31,7 @@ if ( count($posts) != 0 ) {
 			$perma = $post['perma'];
 			include "includes/sptt-index.php";
 			$index_data .= $content;
-
+$index_data .= $img;
 		} // end foreach post
 		$categ_count++;
 		$index_data .= "</section>" .$footer;

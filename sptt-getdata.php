@@ -84,6 +84,7 @@ echo "<pre>";
 print_r($har);
 echo "</pre>";
 
+// get category function
 function sptt_get_cat_link($cat_name) {
 	$cat_link = $cat_name. ".html";
 	$cat_link = preg_replace("/ /","-",$cat_link);
@@ -93,4 +94,44 @@ function sptt_get_cat_link($cat_name) {
 } // end get category link function
 
 echo sptt_get_cat_link("Features");
+
+// if post has image function
+function sptt_post_has_image() {
+	global $img;
+	global $img_path;
+	if ( $img != $img_path ) { return true; }
+	else { return false; }
+} // end if post has image
+
+// if post has description
+function sptt_post_has_description() {
+	global $desc;
+	if ( $desc != '' ) { return true; }
+	else { return false; }
+} // end if post has description
+
+// if post has more info link
+function sptt_post_has_link() {
+	global $link;
+	if ( $link != '' ) { return true; }
+	else { return false; }
+} // end if post has link
+
+// get data from a post
+//function sptt_get_post_field($field) {
+//	global $cat;
+//	global $tit;
+//	global $desc;
+//	global $img;
+//	global $img_alt;
+//	global $link;
+//	global $perma;
+//	if ( $field == 'category' ) { echo $cat; }
+//	if ( $field == 'title' ) { echo "<header><h3>" .$tit. "</h3></header>"; }
+//	elseif ( $field == 'description' ) { echo "<div>" .$desc. "</div>"; }
+//	elseif ( $field == 'image' ) { echo "<figure><img src='" .$img. "' alt='" .$img_alt. "' /></figure>"; }
+//	elseif ( $field == 'link' ) { echo "<a href='" .$perma. "' title='More about " .$tit. "'>+</a>"; }
+//	elseif ( $field == 'permalink' ) { echo "<a rel='bookmark' href='" .$perma. "' title='" .$tit. "'>Permalink</a>"; }
+//	else { echo "<span style='background-color: yellow; color: black;'>Wrong parameter for sptt_get_post_field(). Try one of the following: category, title, description, image, link, permalink.</span>"; }
+//}
 ?>

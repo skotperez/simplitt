@@ -1,0 +1,35 @@
+figure {
+	margin: 0;
+	padding: 0;
+}
+.box-space {
+	padding: 10px;
+}
+
+/* headers */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size: inherit;
+	line-height: inherit;
+	margin: 0;
+}
+
+/* unit box */
+.unit {
+	background-color: white;
+}
+.unit-tit {
+	margin: 5px 5px 0 5px;
+}
+.unit-text {
+	margin: 0 5px;
+}
+.unit-footer {
+	margin-top: 5px;
+	padding: 5px;
+	border-top: 1px solid #eee;
+}
