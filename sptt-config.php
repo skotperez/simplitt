@@ -3,7 +3,6 @@
 ////// SETUP YOUR VARS
 
 //// directories
-$working_path = ""; // base directory
 $site_path = "site/"; // where the HTML files will be stored
 $img_path = "img/"; // images folder
 

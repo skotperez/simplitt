@@ -14,7 +14,7 @@ function sptt_get_data($whatdata) {
 	global $enclosure; // field enclosure character
 
 	// open the data file
-	$fp = fopen($working_path.$csv_filename.".csv",'r');
+	$fp = fopen($csv_filename.".csv",'r');
 
 	// get data and store it in array
 	if ( $fp !== FALSE ) { // if the file exists and is readable

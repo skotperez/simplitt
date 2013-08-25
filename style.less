@@ -1,0 +1,27 @@
+@bodyBackground: #eee;
+@textColor: #1a1a1a;
+@linkColor: #00aad4;
+@linkColorHover: #f00;
+@fontFamily: Helvetica,Arial,sans-serif;
+@fontSize: 11px;
+@lineHeight: 16px;
+
+body {
+	background-color: @bodyBackground;
+	color: @textColor;
+	font-family: @fontFamily;
+	font-size: @fontSize;
+	line-height: @lineHeight;
+}
+a:link,
+a:visited {
+	color: @linkColor;
+}
+a:hover {
+	color: @linkColorHover;
+	text-decoration: none;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-size: @fontSize;
+	line-height: lineHeight;
+}

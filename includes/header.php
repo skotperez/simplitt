@@ -1,5 +1,6 @@
 <?php
 include "sptt-config.php";
+
 $header = '
 <!DOCTYPE html>
 
@@ -8,6 +9,7 @@ $header = '
 <head>
 <meta charset="UTF-8" />
 <title>' .$site_tit. '</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
 
 </head>
 

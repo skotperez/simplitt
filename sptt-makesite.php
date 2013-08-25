@@ -97,4 +97,25 @@ if ( count($posts) != 0 ) {
 	} // end foreach posts
 } // end if posts
 // end create single post files
+
+// build style sheets
+// reset.css
+$reset_css_data = file_get_contents("reset.css");
+$reset_css_handle = fopen($site_path."reset.css", 'w') or die('Cannot create the file reset.css. Be sure that ' .$site_path. ' is writable.'); //open file for writing
+fwrite($reset_css_handle, $reset_css_data);
+fclose($reset_css_handle);
+// style.css
+// compile .less stylesheet into .css
+require 'lessc.inc.php';
+$less = new lessc;
+//$css_path = preg_replace('/includes/',$site_path,__DIR__);
+$css_path = __DIR__."/".$site_path;
+$less->checkedCompile( "style.less", $css_path. "style.css");
+try {
+  $less->compile("invalid LESS } {");
+} catch (exception $e) {
+  echo "fatal error: " . $e->getMessage();
+}
+// end compile .less
+
 ?>
