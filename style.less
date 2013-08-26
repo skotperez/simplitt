@@ -1,17 +1,41 @@
+/* EDITABLE SIMPLITT STYLE VARS */
+
 @bodyBackground: #eee;
 @textColor: #1a1a1a;
-@linkColor: #00aad4;
-@linkColorHover: #f00;
 @fontFamily: Helvetica,Arial,sans-serif;
 @fontSize: 11px;
 @lineHeight: 16px;
 
+@linkColor: #00aad4;
+@linkColorHover: #f00;
+
+@siteWidth: 1200px;
+@siteColumns: 4;
+@columnMargin: @lineHeight / 2;
+
+@sidebarColumns: 1;
+@sidebarBoxBackground: #fff;
+@sidebarBoxFontColor: @textColor;
+
+@mosaicBoxBackground: #fff;
+@mosaicBoxFontColor: @textColor;
+
+/* end EDITABLE SIMPLITT STYLE VARS */
+
+
+@columnWidth: @siteWidth / @siteColumns - @columnMargin * 2;
+@sidebarWidth: ( @columnWidth + @columnMargin * 2 ) * @sidebarColumns;
+@contentWidth: @siteWidth - @sidebarWidth;
+
+figure { margin: 0; }
 body {
 	background-color: @bodyBackground;
 	color: @textColor;
 	font-family: @fontFamily;
 	font-size: @fontSize;
 	line-height: @lineHeight;
+	width: @siteWidth;
+	margin: @lineHeight auto;
 }
 a:link,
 a:visited {
@@ -23,5 +47,75 @@ a:hover {
 }
 h1,h2,h3,h4,h5,h6 {
 	font-size: @fontSize;
-	line-height: lineHeight;
+	line-height: @lineHeight;
+	margin: 0;
+	padding: 0;
 }
+
+
+.box {
+	float: left;
+	width: @columnWidth;
+	margin: @columnMargin;
+
+	.box-text {
+		padding: @columnMargin / 2 @columnMargin;
+	}
+	.box-footer {
+		margin: 0;
+		padding: @columnMargin / 2 @columnMargin @columnMargin / 2 0;
+		border-top: 1px solid @bodyBackground;
+
+		li {
+			list-style: none;
+			display: inline-block;
+			margin-left: @columnMargin;
+		}
+	}
+}
+	
+#pre {
+	width: @sidebarWidth;
+	float: left;
+
+	.box {
+		background-color: @sidebarBoxBackground;
+		color: @sidebarBoxFontColor;
+
+		img {
+			width: @columnWidth - @columnMargin * 2;
+			padding: @columnMargin;
+		}
+	}
+}
+#content {
+	width: @contentWidth;
+	float: left;
+
+	.section {
+		float: left;
+		width: @contentWidth;
+		clear: right;
+		margin-bottom: @lineHeight / 2;
+		padding-bottom: @lineHeight;
+
+		.section-tit {
+			width: 0;
+			height: 0;
+			/*width: @columnWidth;
+			margin: @columnMargin;*/
+			h2 { text-indent: -9999px; }
+		}
+		.box {
+			background-color: @mosaicBoxBackground;
+			color: @mosaicBoxFontColor;
+
+			img {
+				width: @columnWidth;
+			}
+		}
+	}
+}
+
+/* header */
+

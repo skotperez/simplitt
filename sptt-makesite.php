@@ -20,9 +20,10 @@ if ( count($posts) != 0 ) {
 	$categ_names = sptt_get_data('categs');
 	foreach ( $posts as $categ ) {
 		$sec_tit = $categ_names[$categ_count];
-		$index_data .= "<section><header>" .$sec_tit. "</header>";
+		$index_data .= "<section><div class='section'><header><div class='section-tit'><h2>" .$sec_tit. "</h2></div></header>";
 		foreach ( $categ as $post ) {
 			$cat = $post['categ'];
+			$cat_perma = sptt_get_cat_link($cat);
 			$tit = $post['tit'];
 			$desc = $post['desc'];
 			$img = $img_path.$post['img'];
@@ -31,10 +32,9 @@ if ( count($posts) != 0 ) {
 			$perma = $post['perma'];
 			include "includes/sptt-index.php";
 			$index_data .= $content;
-$index_data .= $img;
 		} // end foreach post
 		$categ_count++;
-		$index_data .= "</section>";
+		$index_data .= "</div></section>";
 	} // end foreach categ
 	$index_data .= $footer;
 
@@ -51,7 +51,7 @@ if ( count($posts) != 0 ) {
 		$categ_file = sptt_get_cat_link($categ_names[$categ_count]);
 
 		$sec_tit = $categ_names[$categ_count];
-		$categ_data = $header. "<section><header>" .$sec_tit. "</header>";
+		$categ_data = $header. "<section><div class='section'><header>" .$sec_tit. "</header>";
 		$categ_handle = fopen($site_path.$categ_file, 'a') or die('Cannot create the file ' .$categ_file. '. Be sure that ' .$site_path. ' is writable.'); //open file for writing
 
 		foreach ( $categ as $post ) {
@@ -68,7 +68,7 @@ if ( count($posts) != 0 ) {
 			$categ_data .= $content;
 
 		} // end foreach post
-		$categ_data .= "</section>" .$footer;
+		$categ_data .= "</div></section>" .$footer;
 		fwrite($categ_handle, $categ_data);
 		fclose($categ_handle);
 		$categ_count++;

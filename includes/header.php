@@ -21,13 +21,16 @@ $header = '
 
 	<header>
 	<div id="pre">
-		' .$logo. '
-		<h1 id="sitetit"><a href="' .$site_path. '" title="Ir al inicio">' .$site_tit. '</a></h1>
-		<div id="sitedesc">' .$site_desc. '</div>
+		<div class="box">
+			' .$logo. '
+			<div class="box-text">
+				<h1 id="sitetit"><a href="' .$site_path. '" title="Ir al inicio">' .$site_tit. '</a></h1>
+				<div id="sitedesc">' .$site_desc. '</div>
+			</div>
+		</div>
 	</div><!-- #pre -->
 	</header>
 
-	<hr />
 	<div id="content">
 ';
 ?>
