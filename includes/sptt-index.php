@@ -17,8 +17,8 @@ if ( sptt_post_has_description() ) { $post_desc = "<div class='box-desc'>" .$des
 else { $post_desc = ""; }
 
 $content = "
-<article>
 <div class='box'>
+<article>
 	" .$post_img. "
 	<div class='box-text'>
 		<header><h3 class='box-tit'>" .$tit. "</h3></header>
@@ -28,7 +28,7 @@ $content = "
 		<li><a href='" .$cat_perma. "' title='" .$cat. "'>" .$cat. "</a></li>
 		<li><a href='" .$perma. "' title='" .$tit. "'>Permalink</a></li>
 	</ul></footer>
-</div><!-- .box -->
 </article>
+</div><!-- .box -->
 ";
 ?>

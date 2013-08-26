@@ -20,7 +20,8 @@ if ( count($posts) != 0 ) {
 	$categ_names = sptt_get_data('categs');
 	foreach ( $posts as $categ ) {
 		$sec_tit = $categ_names[$categ_count];
-		$index_data .= "<section><div class='section'><header><div class='section-tit'><h2>" .$sec_tit. "</h2></div></header>";
+		$section_id = $categ_count + 1;
+		$index_data .= "<section><div class='section'><header><div class='section-tit'><h2>" .$sec_tit. "</h2></div></header><div id='section-" .$section_id. "'>";
 		foreach ( $categ as $post ) {
 			$cat = $post['categ'];
 			$cat_perma = sptt_get_cat_link($cat);

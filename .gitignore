@@ -1,2 +1,4 @@
-site/
+site/*.html
+site/*.css
+site/img/*
 sptt-config.php
