@@ -13,6 +13,7 @@ $header = '
 <title>' .$site_tit. '</title>
 <meta content="' .$site_short_desc. '" name="description" />
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" type="text/css" href="style.css" />
 
 </head>
