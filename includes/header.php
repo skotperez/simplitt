@@ -1,30 +1,31 @@
 <?php
 include "sptt-config.php";
 
+if ( sptt_site_has_logo() ) { $logo = '<div id="sitelogo"><img src="' .$img_path.$site_logo. '" alt="' .$site_tit. '" /></div>'; }
+
 $header = '
 <!DOCTYPE html>
 
-<html lang="es-ES">
+<html lang="' .$site_lang. '">
 
 <head>
 <meta charset="UTF-8" />
 <title>' .$site_tit. '</title>
+<meta content="' .$site_short_desc. '" name="description" />
+
 <link rel="stylesheet" type="text/css" href="style.css" />
 
 </head>
 
 <body>
 
+	<header>
 	<div id="pre">
-		<header>
-			<hgroup>
-				<h1 id="blogname"><a href="/simplitt/site/" title="Ir al inicio">' .$site_tit. '</a></h1>
-				<h2 id="blogdesc">' .$site_desc. '</h2>
-			</hgroup>
-
-		</header>
-
+		' .$logo. '
+		<h1 id="sitetit"><a href="' .$site_path. '" title="Ir al inicio">' .$site_tit. '</a></h1>
+		<div id="sitedesc">' .$site_desc. '</div>
 	</div><!-- #pre -->
+	</header>
 
 	<hr />
 	<div id="content">

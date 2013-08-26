@@ -16,11 +16,11 @@ $posts = sptt_get_data('postsbycateg');
 if ( count($posts) != 0 ) {
 	$index_handle = fopen($site_path."index.html", 'w') or die('Cannot create the file index.html. Be sure that ' .$site_path. ' is writable.'); //open file for writing
 	$categ_count = 0;
-	$index_data = "";
+	$index_data = $header;
 	$categ_names = sptt_get_data('categs');
 	foreach ( $posts as $categ ) {
 		$sec_tit = $categ_names[$categ_count];
-		$index_data .= $header. "<section><header>" .$sec_tit. "</header>";
+		$index_data .= "<section><header>" .$sec_tit. "</header>";
 		foreach ( $categ as $post ) {
 			$cat = $post['categ'];
 			$tit = $post['tit'];
@@ -34,8 +34,9 @@ if ( count($posts) != 0 ) {
 $index_data .= $img;
 		} // end foreach post
 		$categ_count++;
-		$index_data .= "</section>" .$footer;
+		$index_data .= "</section>";
 	} // end foreach categ
+	$index_data .= $footer;
 
 	fwrite($index_handle, $index_data);
 	fclose($index_handle);

@@ -25,17 +25,19 @@ function sptt_get_data($whatdata) {
 		while ( ($fp_csv = fgetcsv($fp,$line_length,$delimiter,$enclosure)) !== FALSE ) { // begin main loop
 			if ( $line == 0 ) {}
 			else {
-				$pattern = '/"/';
-				$replace = "\&quot;";
+				//$pattern = '"';
+				//$replace = "&quot;";
 				$cat = $fp_csv[1];
-				$tit = preg_replace($pattern,$replace,$fp_csv[2]);
-				$desc = preg_replace($pattern,$replace,$fp_csv[3]);
+				//$tit = str_replace($pattern,$replace,$fp_csv[2]);
+				$tit = $fp_csv[2];
+				//$desc = str_replace($pattern,$replace,$fp_csv[3]);
+				$desc = $fp_csv[3];
 				$img = $fp_csv[4];
 				$img_alt = $tit;
 				$link = $fp_csv[5];
 				$perma = $tit. ".html";
-				$perma = preg_replace("/ /","-",$perma);
-				$perma = preg_replace("/\?/","",$perma);
+				$perma = str_replace(" ","-",$perma);
+				$perma = str_replace("?","",$perma);
 				$perma = strtolower($perma);
 
 				if ( $whatdata == 'postsbycateg' ) {
@@ -116,6 +118,13 @@ function sptt_post_has_link() {
 	if ( $link != '' ) { return true; }
 	else { return false; }
 } // end if post has link
+
+// if site has a logo
+function sptt_site_has_logo() {
+	global $site_logo;
+	if ( $site_logo != '' ) { return true; }
+	else { return false; }
+} // end if site has a logo
 
 // get data from a post
 //function sptt_get_post_field($field) {
