@@ -31,7 +31,7 @@ if ( count($posts) != 0 ) {
 			$img_alt = $post['img-alt'];
 			$link = $post['link'];
 			$perma = $post['perma'];
-			include "includes/sptt-index.php";
+			include "includes/post-in-mosaic.php";
 			$index_data .= $content;
 		} // end foreach post
 		$categ_count++;
@@ -65,7 +65,7 @@ if ( count($posts) != 0 ) {
 			$link = $post['link'];
 			$perma = $post['perma'];
 
-			include "includes/sptt-categs.php";
+			include "includes/post-in-mosaic.php";
 			$categ_data .= $content;
 
 		} // end foreach post
@@ -89,7 +89,7 @@ if ( count($posts) != 0 ) {
 		$img_alt = $post['img-alt'];
 		$link = $post['link'];
 		$perma = $post['perma'];
-		include "includes/sptt-single.php";
+		include "includes/post-in-single.php";
 
 		$single_data = $header.$content.$footer;
 		$single_handle = fopen($site_path.$perma, 'w') or die('Cannot create the file ' .$perma. '. Be sure that ' .$site_path. ' is writable.'); //open file for writing
