@@ -62,7 +62,7 @@ if ( count($posts) != 0 ) {
 
 		foreach ( $categ as $post ) {
 			$cat = $post['categ'];
-			$cat_link = $categ_file;
+			$cat_perma = $categ_file;
 			$tit = $post['tit'];
 			$desc = $post['desc'];
 			$img = $img_path.$post['img'];
@@ -90,7 +90,7 @@ if ( count($posts) != 0 ) {
 	include "includes/footer.php";
 	foreach ( $posts as $post ) {
 		$cat = $post['categ'];
-		$cat_link = sptt_get_cat_link($cat);
+		$cat_perma = sptt_get_cat_link($cat);
 		$tit = $post['tit'];
 		$desc = $post['desc'];
 		$img = $img_path.$post['img'];
