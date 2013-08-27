@@ -10,7 +10,7 @@
 @linkColor: #00aad4;
 @linkColorHover: #f00;
 
-$siteColumns1200: 4; // numbers of columns for a 1200px screen
+@siteColumns1200: 4; // numbers of columns for a 1200px screen
 @siteColumns960: 4; // numbers of columns for a 960px screen
 @siteColumns768: 3; // numbers of columns for a 768px screen
 @columnMargin: @lineHeight / 2;
@@ -125,6 +125,29 @@ $siteColumns1200: 4; // numbers of columns for a 1200px screen
 					}
 				}
 			}
+
+			.article {
+				float: left;
+				width: @contentWidth;
+				margin: @lineHeight / 2;
+
+				.article-tit {
+					font-size: @fontSize * 2;
+					line-height: @lineHeight * 1.5;
+					font-weight: normal;
+				}
+				.article-meta {
+					margin: 0;
+					padding: 0;
+		
+					li {
+						list-style: none;
+						display: inline-block;
+						margin-right: @columnMargin;
+					}
+				}
+
+			}
 		}
 
 	} /* end @media */
@@ -138,7 +161,7 @@ $siteColumns1200: 4; // numbers of columns for a 1200px screen
 ///////////////////////////////////
 // CALL buildCSS() FOR EACH @MEDIA
 
-.buildCSS(1200px,9999px,1200px,$siteColumns1200);
-.buildCSS(960px,1199px,960px,$siteColumns960);
-.buildCSS(768px,959px,768px,$siteColumns768);
+.buildCSS(1200px,9999px,1200px,@siteColumns1200);
+.buildCSS(960px,1199px,960px,@siteColumns960);
+.buildCSS(768px,959px,768px,@siteColumns768);
 .buildCSS(1px,767px,480px,2);
