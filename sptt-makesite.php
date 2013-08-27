@@ -1,8 +1,6 @@
 <?php
 include "sptt-config.php";
 include "sptt-getdata.php";
-include "includes/header.php";
-include "includes/footer.php";
 
 // delete all old content
 $files = glob($site_path.'*.html'); // get all file names
@@ -11,17 +9,22 @@ foreach($files as $file){ // iterate files
     unlink($file); // delete file
 }
 
-// make index html file
+// get data for index and categs
 $posts = sptt_get_data('postsbycateg');
+$categ_names = sptt_get_data('categs');
+
+// make index html file
+$building = "index";
 if ( count($posts) != 0 ) {
+	include "includes/header.php";
+	include "includes/footer.php";
 	$index_handle = fopen($site_path."index.html", 'w') or die('Cannot create the file index.html. Be sure that ' .$site_path. ' is writable.'); //open file for writing
 	$categ_count = 0;
 	$index_data = $header;
-	$categ_names = sptt_get_data('categs');
 	foreach ( $posts as $categ ) {
 		$sec_tit = $categ_names[$categ_count];
-		$section_id = $categ_count + 1;
-		$index_data .= "<section><div class='section'><header><div class='section-tit'><h2>" .$sec_tit. "</h2></div></header><div id='section-" .$section_id. "'>";
+		$sec_id = $categ_count + 1;
+		$index_data .= "<section><div class='section'><header><div class='section-tit'><h2>" .$sec_tit. "</h2></div></header><div id='section-" .$sec_id. "'>";
 		foreach ( $categ as $post ) {
 			$cat = $post['categ'];
 			$cat_perma = sptt_get_cat_link($cat);
@@ -44,15 +47,17 @@ if ( count($posts) != 0 ) {
 } // end if posts
 
 // make categ html files
-$posts = sptt_get_data('postsbycateg');
+$building = "categs";
 if ( count($posts) != 0 ) {
+	include "includes/header.php";
+	include "includes/footer.php";
 	$categ_count = 0;
-	$categ_names = sptt_get_data('categs');
 	foreach ( $posts as $categ ) {
 		$categ_file = sptt_get_cat_link($categ_names[$categ_count]);
 
 		$sec_tit = $categ_names[$categ_count];
-		$categ_data = $header. "<section><div class='section'><header>" .$sec_tit. "</header>";
+		$sec_id = $categ_count + 1;
+		$categ_data = $header. "<section><div class='section'><header><div class='section-tit'><h2>" .$sec_tit. "</h2></div></header><div id='section-" .$sec_id. "'>";
 		$categ_handle = fopen($site_path.$categ_file, 'a') or die('Cannot create the file ' .$categ_file. '. Be sure that ' .$site_path. ' is writable.'); //open file for writing
 
 		foreach ( $categ as $post ) {
@@ -78,8 +83,11 @@ if ( count($posts) != 0 ) {
 } // end if posts
 
 // make single html files
+$building = "single";
 $posts = sptt_get_data('allposts');
 if ( count($posts) != 0 ) {
+	include "includes/header.php";
+	include "includes/footer.php";
 	foreach ( $posts as $post ) {
 		$cat = $post['categ'];
 		$cat_link = sptt_get_cat_link($cat);
