@@ -1,8 +1,8 @@
-status,category,title,description,image,external link
-publish,Features,No database,"simplitt stores all your content in a single flat file.",600-130609-escampistival-09.png,
-publish,Features,Static site,"simplitt generates a complete static site from your single data file: home page, category pagesand post pages.",,
-publish,Features,No installation,"simplitt needs no installation. Just set up some parameters and upload the files to your server.",,
-publish,Features,Easy update,"simplitt makes all the work: just run a script and simplitt will recompile and update your entire site.",,
-publish,Features,Customizable styles,"simplitt lets you customize your site by editing a few variables.",,
-publish,How to build a site with simplitt,Download simplitt,And upload all the files to your server.,,http://simplitt.com/simplitt.zip
-publish,How to build a site with simplitt,Create two folders,Create a folder call 'site' and inside site create 'img'.,,
+status,category,title,description,image,external link, show at home?
+publish,Features,No database,"simplitt stores all your content in a single flat file.",600-130609-escampistival-09.png,,true
+publish,Features,Static site,"simplitt generates a complete static site from your single data file: home page, category pagesand post pages.",,,true
+publish,Features,No installation,"simplitt needs no installation. Just set up some parameters and upload the files to your server.",,,true
+publish,Features,Easy update,"simplitt makes all the work: just run a script and simplitt will recompile and update your entire site.",,,true
+publish,Features,Customizable styles,"simplitt lets you customize your site by editing a few variables.",,,true
+publish,How to build a site with simplitt,Download simplitt,And upload all the files to your server.,,http://simplitt.com/simplitt.zip,
+publish,How to build a site with simplitt,Create two folders,Create a folder call 'site' and inside site create 'img'.,,,true

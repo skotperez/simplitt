@@ -39,6 +39,7 @@ function sptt_get_data($whatdata) {
 				$perma = str_replace(" ","-",$perma);
 				$perma = str_replace("?","",$perma);
 				$perma = strtolower($perma);
+				$athome = $fp_csv[6];
 
 				if ( $whatdata == 'postsbycateg' ) {
 					$data[$cat][] = array(
@@ -49,6 +50,7 @@ function sptt_get_data($whatdata) {
 						'img-alt' => $tit,
 						'link' => $link,
 						'perma' => $perma,
+						'athome' => $athome,
 					);
 					$posts = $data;
 				} elseif ( $whatdata == 'allposts' ) {
