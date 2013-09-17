@@ -2,6 +2,7 @@
 include "sptt-config.php";
 
 if ( sptt_site_has_logo() ) { $logo = '<div id="sitelogo"><img src="' .$img_path.$site_logo. '" alt="' .$site_tit. '" /></div>'; }
+else { $logo = ""; }
 
 $header = '
 <!DOCTYPE html>
