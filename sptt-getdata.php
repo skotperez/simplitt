@@ -2,8 +2,28 @@
 // include config vars
 include "sptt-config.php";
 
+function sptt_get_site_metadata($whatdata) {
+// $whatdata parameter values: lang, home, title, description, short_description, logo_url
+	global $site_lang;
+	global $site_tit;
+	global $site_desc;
+	global $site_short_desc;
+	global $site_logo;
+	global $img_path;
+	global $site_path;
+	if ( $whatdata == 'lang' ) { $sitedata = $site_lang; }
+	elseif ( $whatdata == 'title' ) { $sitedata = $site_tit; }
+	elseif ( $whatdata == 'home' ) { $sitedata = $site_home; }
+	elseif ( $whatdata == 'description' ) { $sitedata = $site_desc; }
+	elseif ( $whatdata == 'short_description' ) { $sitedata = $site_short_desc; }
+	elseif ( $whatdata == 'logo_url' ) { $sitedata = $img_path.$site_logo; }
+
+	return $sitedata;
+}
+// end get_site_data funcion
+
 function sptt_get_data($whatdata) {
-// $order parameter values: allposts, postsbycateg, categs
+// $whatdata parameter values: allposts, postsbycateg, categs
 	global $working_path; // base directory
 	global $site_path; // where the HTML files will be stored
 	global $img_path; // images folder
@@ -83,11 +103,6 @@ function sptt_get_data($whatdata) {
 return $posts;
 } // end sptt_all_posts function
 
-$har = sptt_get_data('allposts');
-echo "<pre>";
-print_r($har);
-echo "</pre>";
-
 // get category function
 function sptt_get_cat_link($cat_name) {
 	$cat_link = $cat_name. ".html";
@@ -96,8 +111,6 @@ function sptt_get_cat_link($cat_name) {
 	$cat_link = strtolower($cat_link);
 	return $cat_link;
 } // end get category link function
-
-echo sptt_get_cat_link("Features");
 
 // if post has image function
 function sptt_post_has_image() {
@@ -127,6 +140,21 @@ function sptt_site_has_logo() {
 	if ( $site_logo != '' ) { return true; }
 	else { return false; }
 } // end if site has a logo
+
+// if is home function
+function sptt_is_home() {
+	if ( $building == 'index' ) { return true; }
+} // end if is home function
+
+// if is category function
+function sptt_is_category() {
+	if ( $building == 'categs' ) { return true; }
+} // end if is category function
+
+// if is single function
+function sptt_is_single() {
+	if ( $building == 'single' ) { return true; }
+} // end if is single function
 
 // get data from a post
 //function sptt_get_post_field($field) {
