@@ -173,4 +173,30 @@ function sptt_is_single() {
 //	elseif ( $field == 'permalink' ) { echo "<a rel='bookmark' href='" .$perma. "' title='" .$tit. "'>Permalink</a>"; }
 //	else { echo "<span style='background-color: yellow; color: black;'>Wrong parameter for sptt_get_post_field(). Try one of the following: category, title, description, image, link, permalink.</span>"; }
 //}
+
+// include masonry library function
+function sptt_active_masonry($masonry_path,$item_css_class) {
+	if ( sptt_is_home() ) {
+		$categ_names = sptt_get_data('categs');
+		$categ_num = count($categ_names);
+	} else { $categ_num = 1; }
+
+	$masonry_count = 1;
+	$masonry_out = "
+		<script type='text/javascript' src='" .$masonry_path. "'></script>
+		<script>
+	";
+	while ( $categ_num >= $masonry_count ) {
+		$masonry_out .= "
+		var section" .$masonry_count. " = document.querySelector('#section-" .$masonry_count. "');
+		var msnry = new Masonry( section" .$masonry_count. ", {
+		  itemSelector: '." .$item_css_class. "'
+		});
+		";
+		$masonry_count++;
+	}
+	$masonry_out .= "</script>";
+
+return $masonry_out;
+} // end masonry library function
 ?>
