@@ -4,7 +4,8 @@
 
 //// directories
 $site_path = "site/"; // where the HTML files will be stored. don't forget to create this folder and give it the right permissions
-$img_path = "img/"; // images folder. this folder must be created into $site_path folder
+$img_path = "site/img/"; // images folder. this folder must be created into $site_path folder
+$site_home = "http://localhost/simplitt/site/"; // home page
 
 //// CSV data file vars
 $csv_filename = "sptt-content"; // name (no extension)

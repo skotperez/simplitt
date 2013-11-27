@@ -11,12 +11,13 @@ function sptt_get_site_metadata($whatdata) {
 	global $site_logo;
 	global $img_path;
 	global $site_path;
+	global $site_home;
 	if ( $whatdata == 'lang' ) { $sitedata = $site_lang; }
 	elseif ( $whatdata == 'title' ) { $sitedata = $site_tit; }
-	elseif ( $whatdata == 'home' ) { $sitedata = $site_home; }
 	elseif ( $whatdata == 'description' ) { $sitedata = $site_desc; }
 	elseif ( $whatdata == 'short_description' ) { $sitedata = $site_short_desc; }
 	elseif ( $whatdata == 'logo_url' ) { $sitedata = $img_path.$site_logo; }
+	elseif ( $whatdata == 'home' ) { $sitedata = $site_home; }
 
 	return $sitedata;
 }
@@ -143,36 +144,41 @@ function sptt_site_has_logo() {
 
 // if is home function
 function sptt_is_home() {
+	global $building;
 	if ( $building == 'index' ) { return true; }
 } // end if is home function
 
 // if is category function
 function sptt_is_category() {
+	global $building;
 	if ( $building == 'categs' ) { return true; }
 } // end if is category function
 
 // if is single function
 function sptt_is_single() {
+	global $building;
 	if ( $building == 'single' ) { return true; }
 } // end if is single function
 
 // get data from a post
-//function sptt_get_post_field($field) {
-//	global $cat;
-//	global $tit;
-//	global $desc;
-//	global $img;
-//	global $img_alt;
-//	global $link;
-//	global $perma;
-//	if ( $field == 'category' ) { echo $cat; }
-//	if ( $field == 'title' ) { echo "<header><h3>" .$tit. "</h3></header>"; }
-//	elseif ( $field == 'description' ) { echo "<div>" .$desc. "</div>"; }
-//	elseif ( $field == 'image' ) { echo "<figure><img src='" .$img. "' alt='" .$img_alt. "' /></figure>"; }
-//	elseif ( $field == 'link' ) { echo "<a href='" .$perma. "' title='More about " .$tit. "'>+</a>"; }
-//	elseif ( $field == 'permalink' ) { echo "<a rel='bookmark' href='" .$perma. "' title='" .$tit. "'>Permalink</a>"; }
-//	else { echo "<span style='background-color: yellow; color: black;'>Wrong parameter for sptt_get_post_field(). Try one of the following: category, title, description, image, link, permalink.</span>"; }
-//}
+function sptt_get_post_data($field) {
+	global $cat;
+	global $tit;
+	global $desc;
+	global $img;
+	global $img_alt;
+	global $link;
+	global $perma;
+	if ( $field == 'category' ) { $post_data = $cat; }
+	elseif ( $field == 'title' ) { $post_data = $tit; }
+	elseif ( $field == 'content' ) { $post_data = $desc; }
+	elseif ( $field == 'image_url' ) { $post_data = $img; }
+	elseif ( $field == 'image_alt' ) { $post_data = $img_alt; }
+	elseif ( $field == 'more_link' ) { $post_data = $link; }
+	elseif ( $field == 'permalink' ) { $post_data = $perma; }
+	else { $post_data = "<span style='background-color: yellow; color: black;'>Wrong parameter for sptt_get_post_data(). Try one of the following: category, title, content, image_url, image_alt, more_link, permalink.</span>"; }
+	return $post_data;
+} // end get data from a post
 
 // include masonry library function
 function sptt_active_masonry($masonry_path,$item_css_class) {
