@@ -45,6 +45,7 @@ function sptt_get_data($whatdata) {
 		$line = 0;
 		while ( ($fp_csv = fgetcsv($fp,$line_length,$delimiter,$enclosure)) !== FALSE ) { // begin main loop
 			if ( $line == 0 ) {}
+			elseif ( $fp_csv[0] != 'publish') {}
 			else {
 				//$pattern = '"';
 				//$replace = "&quot;";
