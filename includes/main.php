@@ -10,8 +10,8 @@
 		<?php } ?>
 	</div>
 	<footer><ul class='box-footer'>
-		<li><a href='<?php echo sptt_get_cat_link(sptt_get_post_data('category')); ?>' title='<?php echo sptt_get_post_data('category'); ?>'><?php echo sptt_get_post_data('category'); ?></a></li>
-		<li><a href='<?php echo sptt_get_post_data('permalink'); ?>' title='<?php echo sptt_get_post_data('title'); ?>'>Permalink</a></li>
+		<li><a href='<?php echo sptt_get_cat_link(sptt_get_post_data('category')); ?>' title='<?php echo sptt_get_post_data('category'); ?>'>#<?php echo sptt_get_post_data('category'); ?></a></li>
+		<li><a href='<?php echo sptt_get_post_data('permalink'); ?>' title='Enlace permanente a <?php echo sptt_get_post_data('title'); ?>'>&infin;</a></li>
 	</ul></footer>
 </article>
 </div><!-- .box -->
