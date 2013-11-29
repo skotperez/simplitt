@@ -1,9 +1,13 @@
 status,category,title,description,image,external link,show at home?
-publish,Features,No database,"simplitt stores all your content in a single flat file.",600-130609-escampistival-09.png,,true
-publish,Features,Connect simplitt with Google Drive,"Store your data in a GDrive spreadsheet and connect it with simplitt to generate your site.",,,true
-publish,Features,Static site,"simplitt generates a complete static site from your single data file: home page, category pagesand post pages.",,,true
+publish,Features,No database,"simplitt stores all your content in a single flat file.",,,true
+publish,Features,Static site,"simplitt generates a complete static site from your single data file: home page, category pages and single post pages.",,,true
 publish,Features,No installation,"simplitt needs no installation. Just set up some parameters and upload the files to your server.",,,true
 publish,Features,Easy update,"simplitt makes all the work: just run a script and simplitt will recompile and update your entire site.",,,true
 publish,Features,Customizable styles,"simplitt lets you customize your site by editing a few variables.",,,true
-publish,How to build a site with simplitt,Download simplitt,And upload all the files to your server.,,http://simplitt.com/simplitt.zip,true
-publish,How to build a site with simplitt,Create two folders,Create a folder call 'site' and inside site create 'img'.,,,true
+publish,How to build a site with simplitt,Get simplitt,<a href="https://github.com/skotperez/simplitt">Download simplitt</a> and upload all the files to your server.,,,true
+publish,How to build a site with simplitt,Customize your simplitt,Rename sptt-config-sample.php file to sptt-config.php and set up the variables inside.,,,true
+publish,How to build a site with simplitt,Take care of your content,Edit sptt-content.csv with your favorite text or spreadsheet editor to include your content.,,,true
+publish,How to build a site with simplitt,Compile simplitt,Run sptt-makesite.php script to generate or update your site.,,,true
+draft,To Do,Connect simplitt with Google Drive,"Store your data in a GDrive spreadsheet and connect it with simplitt to generate your site.",,,true
+draft,To Do,Add content column in CSV file,"Now is posible to add a description, a kind of excerpt.",,,true
+publish,Who is behind,Alfonso S. Uzábal,"Working and researching in <a href='http://montera34.com'>montera34</a> and <a href='http://obsoletos.org'>Obsoletos</a> about digital and technological autonomy from several approaches: open source software; creative systems resulting from electronic and technological waste; open data in the web. Blogging at <a href='http://voragine.net'>Autonomía digital y tecnológica</a>. Mixing digital, rural and nomadic life.",,,true

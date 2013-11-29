@@ -7,6 +7,8 @@
 @fontSize: 12px;
 @lineHeight: 18px;
 
+@sectionTitColor: #bbb;
+
 @linkColor: #00aad4;
 @linkColorHover: #f00;
 
@@ -22,7 +24,7 @@
 @mosaicBoxBackground: #fff;
 @mosaicBoxFontColor: @textColor;
 
-@featuredBackground: yellow;
+@featuredBackground: gainsboro;
 
 // end EDITABLE SIMPLITT STYLE VARS
 ///////////////////////////////////
@@ -80,7 +82,6 @@
 		
 				li {
 					list-style: none;
-					display: inline-block;
 					margin-left: @columnMargin;
 				}
 			}
@@ -98,6 +99,9 @@
 					width: @columnWidth - @columnMargin * 2;
 					padding: @columnMargin;
 				}
+				.box-footer li {
+					display: block;
+				}
 			}
 			.menutotop {
 				position: fixed;
@@ -114,14 +118,19 @@
 				width: @contentWidth;
 				clear: right;
 				margin-bottom: @lineHeight / 2;
-				padding-bottom: @lineHeight;
+				padding-bottom: @lineHeight * 4;
 		
 				.section-tit {
-					width: 0;
+					/*width: 0;
 					height: 0;
-					/*width: @columnWidth;
-					margin: @columnMargin;*/
-					h2 { text-indent: -9999px; }
+					width: @columnWidth;*/
+					margin: @columnMargin @columnMargin 0;
+					h2 {
+						/*text-indent: -9999px;*/
+						font-weight: normal;
+						text-transform: uppercase;
+						color: @sectionTitColor;
+					}
 				}
 				.box {
 					background-color: @mosaicBoxBackground;
@@ -129,6 +138,9 @@
 		
 					img {
 						width: @columnWidth;
+					}
+					.box-footer li {
+						display: inline-block;
 					}
 				}
 				.featured {
