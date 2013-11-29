@@ -2,3 +2,4 @@ site/*.html
 site/*.css
 site/img/*
 sptt-config.php
+!site/img/simplitt.png
