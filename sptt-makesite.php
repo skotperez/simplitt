@@ -80,12 +80,20 @@ if ( count($posts) != 0 ) {
 	} // end foreach categ
 
 	$index_data = $begin.$sidebar.$main.$end;
-	fwrite($index_handle, $index_data);
+	$write_success = fwrite($index_handle, $index_data);
 	fclose($index_handle);
+	// generate feedback for user
+	if ( $write_success == FALSE ) {
+		$feedback_index = "<p class='error'>There was an error while generating <code>index.html</code>.</p>";
+	} else {
+		$feedback_index = "<p class='success'><strong><code>index.html</code></strong> has been generated correctly.</p>";
+
+	}
 } // end if posts
 
 // make categ html files
 $building = "categs";
+$feedback_categs = ""; // user's feedback output
 if ( count($posts) != 0 ) {
 	// include begin.php
 	ob_start(); # start buffer
@@ -149,8 +157,15 @@ if ( count($posts) != 0 ) {
 		} // end foreach post
 		$main .= "</div></section>";
 		$categ_data = $begin.$sidebar.$main.$end;
-		fwrite($categ_handle, $categ_data);
+		$write_success = fwrite($categ_handle, $categ_data);
 		fclose($categ_handle);
+		// generate feedback for user
+		if ( $write_success == FALSE ) {
+			$feedback_categs .= "<p class='error'>There was an error while generating <code>" .$categ_file. "</code>.</p>";
+		} else {
+			$feedback_categs .= "<p class='success'><strong><code>" .$categ_file. "</code></strong> has been generated correctly.</p>";
+		}
+
 		$categ_count++;
 	} // end foreach categ
 
@@ -159,6 +174,7 @@ if ( count($posts) != 0 ) {
 // make single html files
 $building = "single";
 $posts = sptt_get_data('allposts');
+$feedback_singles = ""; // user feedback output
 if ( count($posts) != 0 ) {
 	// include begin.php
 	ob_start(); # start buffer
@@ -213,8 +229,14 @@ if ( count($posts) != 0 ) {
 
 		$single_data = $begin.$sidebar.$main.$end;
 		$single_handle = fopen($site_path.$perma, 'w') or die('Cannot create the file ' .$perma. '. Be sure that ' .$site_path. ' is writable.'); //open file for writing
-		fwrite($single_handle, $single_data);
+		$write_success = fwrite($single_handle, $single_data);
 		fclose($single_handle);
+		// generate feedback for user
+		if ( $write_success == FALSE ) {
+			$feedback_singles .= "<p class='error'>There was an error while generating <code>" .$perma. "</code>.</p>";
+		} else {
+			$feedback_singles .= "<p class='success'><strong><code>" .$perma. "</code></strong> has been generated correctly.</p>";
+		}
 
 	} // end foreach posts
 } // end if posts
@@ -224,8 +246,15 @@ if ( count($posts) != 0 ) {
 // reset.css
 $reset_css_data = file_get_contents("reset.css");
 $reset_css_handle = fopen($site_path."reset.css", 'w') or die('Cannot create the file reset.css. Be sure that ' .$site_path. ' is writable.'); //open file for writing
-fwrite($reset_css_handle, $reset_css_data);
+$write_success = fwrite($reset_css_handle, $reset_css_data);
 fclose($reset_css_handle);
+// generate feedback for user
+if ( $write_success == FALSE ) {
+	$feedback_singles .= "<p class='error'>There was an error while generating <code>reset.css</code>.</p>";
+} else {
+	$feedback_singles .= "<p class='success'><strong><code>reset.css</code></strong> has been generated correctly.</p>";
+}
+
 // style.css
 // compile .less stylesheet into .css
 require 'lessc.inc.php';
@@ -233,11 +262,46 @@ $less = new lessc;
 //$css_path = preg_replace('/includes/',$site_path,__DIR__);
 $css_path = __DIR__."/".$site_path;
 $less->checkedCompile( "style.less", $css_path. "style.css");
-try {
-  $less->compile("invalid LESS } {");
-} catch (exception $e) {
-  echo "fatal error: " . $e->getMessage();
-}
+//try {
+//  $less->compile("invalid LESS } {");
+//} catch (exception $e) {
+//  echo "fatal error: " . $e->getMessage();
+//}
 // end compile .less
 
+// generation output
 ?>
+<!DOCTYPE html>
+<html lang="<?php echo sptt_get_site_metadata("lang"); ?>">
+
+<head>
+<meta charset="UTF-8" />
+<title>Generator script for the site <?php echo sptt_get_site_metadata("title"); ?></title>
+
+<meta content="<?php echo sptt_get_site_metadata("title"); ?>" name="description" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<style>
+.error { color: #f00;}
+.success { color: #0f0;}
+</style>
+
+</head>
+
+<body>
+
+<h1>Generator script for the site "<?php echo sptt_get_site_metadata("title"); ?>"</h1>
+<p><strong>This script generates your site</strong>. Basically it writes HTML files in a dynamic way from the data you have included in <code>sptt-content.csv</code>. This is the result:</p>
+
+<h2>Home page</h2>
+<?php echo $feedback_index; ?>
+
+<h2>Category pages</h2>
+<?php echo $feedback_categs; ?>
+
+<h2>Single post pages</h2>
+<?php echo $feedback_singles; ?>
+
+</body>
+</html>
