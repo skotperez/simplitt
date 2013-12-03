@@ -4,6 +4,7 @@
 
 <head>
 <meta charset="UTF-8" />
+<meta name="generator" content="simplitt" />
 <title><?php echo sptt_get_site_metadata("title"); ?></title>
 
 <meta content="<?php echo sptt_get_site_metadata("title"); ?>" name="description" />
