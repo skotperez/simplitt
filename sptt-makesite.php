@@ -243,6 +243,7 @@ if ( count($posts) != 0 ) {
 // end create single post files
 
 // build style sheets
+$feedback_styles = "";
 // reset.css
 $reset_css_data = file_get_contents("reset.css");
 $reset_css_handle = fopen($site_path."reset.css", 'w') or die('Cannot create the file reset.css. Be sure that ' .$site_path. ' is writable.'); //open file for writing
@@ -250,9 +251,9 @@ $write_success = fwrite($reset_css_handle, $reset_css_data);
 fclose($reset_css_handle);
 // generate feedback for user
 if ( $write_success == FALSE ) {
-	$feedback_singles .= "<p class='error'>There was an error while generating <code>reset.css</code>.</p>";
+	$feedback_styles .= "<p class='error'>There was an error while generating <code>reset.css</code>.</p>";
 } else {
-	$feedback_singles .= "<p class='success'><strong><code>reset.css</code></strong> has been generated correctly.</p>";
+	$feedback_styles .= "<p class='success'><strong><code>reset.css</code></strong> has been generated correctly.</p>";
 }
 
 // style.css
@@ -267,6 +268,13 @@ $less->checkedCompile( "style.less", $css_path. "style.css");
 //} catch (exception $e) {
 //  echo "fatal error: " . $e->getMessage();
 //}
+// generate feedback for user
+if ( $write_success == FALSE ) {
+	$feedback_styles .= "<p class='error'>There was an error while generating <code>style.css</code>.</p>";
+} else {
+	$feedback_styles .= "<p class='success'><strong><code>style.css</code></strong> has been generated correctly.</p>";
+}
+
 // end compile .less
 
 // generation output
@@ -302,6 +310,9 @@ $less->checkedCompile( "style.less", $css_path. "style.css");
 
 <h2>Single post pages</h2>
 <?php echo $feedback_singles; ?>
+
+<h2>Style files</h2>
+<?php echo $feedback_styles; ?>
 
 </body>
 </html>
