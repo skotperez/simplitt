@@ -3,3 +3,4 @@ site/*.css
 site/img/*
 sptt-config.php
 !site/img/simplitt.png
+!site/img/img.example.png
