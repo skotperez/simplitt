@@ -4,12 +4,19 @@ publish,Features,Static site,"simplitt generates a complete static site from you
 publish,Features,No installation,"simplitt needs no installation. Just set up some parameters and upload the files to your server.",,,true
 publish,Features,Easy update,"simplitt makes all the work: just run a script and simplitt will recompile and update your entire site.",,,true
 publish,Features,Customizable styles,"simplitt lets you customize your site by editing a few variables.",,,true
-publish,How to build a site with simplitt,Get simplitt,<a href="https://github.com/skotperez/simplitt">Download simplitt</a> and upload all the files to your server.,,,true
-publish,How to build a site with simplitt,Customize your simplitt,Rename <code>sptt-config-sample.php</code> file to sptt-config.php and set up the variables inside.,,,true
-publish,How to build a site with simplitt,Take care of your content,Edit <code>sptt-content.csv</code> with your favorite text or spreadsheet editor to include your content.,,,true
-publish,How to build a site with simplitt,"Set site folder permissions","Change recursively the permissions of <code>site</code> folder to allow simplitt to make your site: 777 will work.",,,true
-publish,How to build a site with simplitt,Compile simplitt,Run <code>sptt-makesite.php</code> script to generate or update your site. Just visit it in your browser: <code>http://yourdomain.com/sptt-makesite.php</code>.,,,true
-publish,How to build a site with simplitt,Compiling simplitt in localhost,"Alternatively, the best and most secure way to use simplitt is to compile it in your local machine, and to upload to your internet server just the content in <code>site/</code> folder.",,,true
+publish,Features,Free software,"simplitt is free software. You can <a href='https://github.com/skotperez/simplitt'>get the source code</a> and use it, modify it and distribute it as its <a href='https://github.com/skotperez/simplitt/blob/master/license.txt'>GPL licence</a> allows.",,,true
+publish,Demo,This site has been built by simplitt,"So, this site itself is a good demo of simplitt, version 2.0.",,,true
+publish,Demo,"Home, category and single pages","simplitt generates a full site. That includes a home page, one page for each of your categories and a single page for each of your contents.",,,true
+publish,Demo,"Can I include images in simplitt?","Yes, you can. Just put the image file in <code>site/img/</code> folder and its name in the data file.",img.example.png,,true
+publish,How to build a site with simplitt: the easy way,Get simplitt,<a href='/simplitt.zip'>Download simplitt</a> and upload all the files to your server.,,,true
+publish,How to build a site with simplitt: the easy way,Customize your simplitt,"Rename <code>sptt-config-sample.php</code> file to <code>sptt-config.php</code> and set up the variables inside. Then open <code>.htaccess</code> file and customize it for your domain, following the instruction inside.",,,true
+publish,How to build a site with simplitt: the easy way,Take care of your content,Edit <code>sptt-content.csv</code> with your favorite text or spreadsheet editor to include your content.,,,true
+publish,How to build a site with simplitt: the easy way,"Set site folder permissions","Change recursively the permissions of <code>site</code> folder to allow simplitt to make your site: 777 will work.",,,true
+publish,How to build a site with simplitt: the easy way,Compile simplitt,Run <code>sptt-makesite.php</code> script to generate or update your site. Just visit it in your browser: <code>http://yourdomain.com/sptt-makesite.php</code>.,,,true
+publish,Working in localhost,Working in localhost,"Alternatively, the best and most secure way to use simplitt is to compile and test it in your local machine.",,,true
+publish,Working in localhost,Prepare your local machine,"You need to install a web server with php support: apache and php packages should be enough.",,,true
+publish,Working in localhost,"Upload the site to your internet server","Upload just the content in <code>site/</code> folder to your internet server and you will have a full static site in your internet server, dynamically generated in your localhost.",,,true
+publish,Working in localhost,"More security","To compile in localhost is good because: you'll automatically get a local backup of your site; and you maximize the security of your server.",,,true
 draft,To Do,Connect simplitt with Google Drive,"Store your data in a GDrive spreadsheet and connect it with simplitt to generate your site.",,,true
 draft,To Do,Add content column in CSV file,"Now is posible to add a description, a kind of excerpt.",,,true
 publish,Who is behind,Alfonso S. Uzábal,"Working and researching in <a href='http://montera34.com'>montera34</a> and <a href='http://obsoletos.org'>Obsoletos</a> about digital and technological autonomy from several approaches: open source software; creative systems resulting from electronic and technological waste; open data in the web. Blogging at <a href='http://voragine.net'>Autonomía digital y tecnológica</a>. Mixing digital, rural and nomadic life.",,,true
