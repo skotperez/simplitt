@@ -21,7 +21,32 @@ function sptt_get_site_metadata($whatdata) {
 
 	return $sitedata;
 }
-// end get_site_data funcion
+// end get_site_metadata funcion
+
+/**
+ * Function: sanitize
+ * Returns a sanitized string, typically for URLs.
+ * Author: http://chyrp.net/
+ *
+ * Parameters:
+ *     $string - The string to sanitize.
+ *     $force_lowercase - Force the string to lowercase?
+ *     $anal - If set to *true*, will remove all non-alphanumeric characters.
+ */
+function sptt_sanitize($string, $force_lowercase = true, $anal = false) {
+    $strip = array("~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "=", "+", "[", "{", "]",
+                   "}", "\\", "|", ";", ":", "\"", "'", "&#8216;", "&#8217;", "&#8220;", "&#8221;", "&#8211;", "&#8212;",
+                   "â€”", "â€“", ",", "<", ".", ">", "/", "?");
+    $clean = trim(str_replace($strip, "", strip_tags($string)));
+    $clean = preg_replace('/\s+/', "-", $clean);
+    $clean = ($anal) ? preg_replace("/[^a-zA-Z0-9]/", "", $clean) : $clean ;
+    return ($force_lowercase) ?
+        (function_exists('mb_strtolower')) ?
+            mb_strtolower($clean, 'UTF-8') :
+            strtolower($clean) :
+        $clean;
+}
+// end sptt_sanitize
 
 function sptt_get_data($whatdata) {
 // $whatdata parameter values: allposts, postsbycateg, categs
@@ -57,10 +82,11 @@ function sptt_get_data($whatdata) {
 				$img = $fp_csv[4];
 				$img_alt = $tit;
 				$link = $fp_csv[5];
-				$perma = $tit. ".html";
-				$perma = str_replace(" ","-",$perma);
-				$perma = str_replace("?","",$perma);
-				$perma = strtolower($perma);
+				$perma = sptt_sanitize($tit);
+				$perma = $perma. ".html";
+				//$perma = str_replace(" ","-",$perma);
+				//$perma = str_replace("?","",$perma);
+				//$perma = strtolower($perma);
 				$athome = $fp_csv[6];
 
 				if ( $whatdata == 'postsbycateg' ) {
@@ -107,10 +133,11 @@ return $posts;
 
 // get category function
 function sptt_get_cat_link($cat_name) {
-	$cat_link = $cat_name. ".html";
-	$cat_link = preg_replace("/ /","-",$cat_link);
-	$cat_link = preg_replace("/\?/","",$cat_link);
-	$cat_link = strtolower($cat_link);
+	$cat_link = sptt_sanitize($cat_name);
+	$cat_link = $cat_link . ".html";
+	//$cat_link = preg_replace("/ /","-",$cat_link);
+	//$cat_link = preg_replace("/\?/","",$cat_link);
+	//$cat_link = strtolower($cat_link);
 	return $cat_link;
 } // end get category link function
 
