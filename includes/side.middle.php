@@ -1,7 +1,7 @@
 <aside>
 	<div id="blocks" class='box'>
 		<div class="box-text">
-			<h3 class="box-tit">Secciones</h3>
+			<h3 class="box-tit">Sections</h3>
 		</div>
 		<nav><ul class='box-footer'>
 		<?php foreach ( sptt_get_data('categs') as $cat ) {
