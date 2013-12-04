@@ -134,7 +134,8 @@ if ( count($posts) != 0 ) {
 		//$categ_file = sptt_check_url($categ_file);
 
 		$sec_tit = $categ_names[$categ_count];
-		$sec_id = $categ_count + 1;
+		//$sec_id = $categ_count + 1;
+		$sec_id = 1;
 		$main = "<div id='content'><section><div class='section'><header><div class='section-tit'><h2>" .$sec_tit. "</h2></div></header><div id='section-" .$sec_id. "'>";
 		$categ_handle = fopen($site_path.$categ_file, 'a') or die('Cannot create the file ' .$categ_file. '. Be sure that ' .$site_path. ' is writable.'); //open file for writing
 
