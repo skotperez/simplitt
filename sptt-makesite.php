@@ -131,6 +131,7 @@ if ( count($posts) != 0 ) {
 	$categ_count = 0;
 	foreach ( $posts as $categ ) {
 		$categ_file = sptt_get_cat_link($categ_names[$categ_count]);
+		//$categ_file = sptt_check_url($categ_file);
 
 		$sec_tit = $categ_names[$categ_count];
 		$sec_id = $categ_count + 1;
@@ -213,6 +214,7 @@ if ( count($posts) != 0 ) {
 		$main = "<div id='content'>";
 		$cat = $post['categ'];
 		$cat_perma = sptt_get_cat_link($cat);
+		//$cat_perma = sptt_check_url($cat_perma);
 		$tit = $post['tit'];
 		$desc = $post['desc'];
 		$img = $img_path.$post['img'];

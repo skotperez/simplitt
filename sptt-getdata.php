@@ -48,6 +48,27 @@ function sptt_sanitize($string, $force_lowercase = true, $anal = false) {
 }
 // end sptt_sanitize
 
+// check if URL already exists
+// if true, constructs a new one
+function sptt_check_url($filename) {
+	global $site_path;
+	$ext = ".html";
+	$filepath = $site_path.$filename;
+	if ( is_file($filepath) ) { // if file exists
+		$count = 0;
+		while ( is_file($filepath) ) {
+			$count++;
+			$filename = basename($filepath, $ext);
+			$filename = $filename . '-' . $count . $ext;
+			$filepath = $site_path . $filename;
+		}
+	} // end if file exist
+	return $filename;
+}
+// end check if URL already exists
+
+
+
 function sptt_get_data($whatdata) {
 // $whatdata parameter values: allposts, postsbycateg, categs
 	global $working_path; // base directory
@@ -84,6 +105,7 @@ function sptt_get_data($whatdata) {
 				$link = $fp_csv[5];
 				$perma = sptt_sanitize($tit);
 				$perma = $perma. ".html";
+				$perma = sptt_check_url($perma);
 				//$perma = str_replace(" ","-",$perma);
 				//$perma = str_replace("?","",$perma);
 				//$perma = strtolower($perma);
@@ -135,6 +157,7 @@ return $posts;
 function sptt_get_cat_link($cat_name) {
 	$cat_link = sptt_sanitize($cat_name);
 	$cat_link = $cat_link . ".html";
+	$cat_link = sptt_check_url($cat_link);
 	//$cat_link = preg_replace("/ /","-",$cat_link);
 	//$cat_link = preg_replace("/\?/","",$cat_link);
 	//$cat_link = strtolower($cat_link);
@@ -197,6 +220,7 @@ function sptt_get_post_data($field) {
 	global $img_alt;
 	global $link;
 	global $perma;
+	$perma = sptt_check_url($perma);
 	if ( $field == 'category' ) { $post_data = $cat; }
 	elseif ( $field == 'title' ) { $post_data = $tit; }
 	elseif ( $field == 'content' ) { $post_data = $desc; }
