@@ -78,6 +78,7 @@ if ( count($posts) != 0 ) {
 		$categ_count++;
 		$main .= "</div></section>";
 	} // end foreach categ
+	$main .= "</div><!-- #content -->";
 
 	$index_data = $begin.$sidebar.$main.$end;
 	$write_success = fwrite($index_handle, $index_data);
@@ -157,7 +158,7 @@ if ( count($posts) != 0 ) {
 			}
 
 		} // end foreach post
-		$main .= "</div></section>";
+		$main .= "</div></section></div><!-- #content -->";
 		$categ_data = $begin.$sidebar.$main.$end;
 		$write_success = fwrite($categ_handle, $categ_data);
 		fclose($categ_handle);
