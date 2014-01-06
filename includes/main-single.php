@@ -11,6 +11,11 @@
 		<?php if ( sptt_post_has_description() ) { ?>
 			<div class='box-desc'><?php echo sptt_get_post_data('content'); ?></div>
 		<?php } ?>
+		<?php if ( sptt_post_has_link() ) { ?>
+			<ul class='article-meta'>
+				<li><a href='<?php echo sptt_get_post_data('more_link'); ?>' title='Más información sobre <?php echo sptt_get_post_data('title'); ?>'>Más información</a> (enlace externo)</li>
+			</ul>
+		<?php } ?>
 	</div>
 	</article>
 </div><!-- .article -->
