@@ -155,9 +155,10 @@ return $posts;
 
 // get category function
 function sptt_get_cat_link($cat_name) {
+	global $building;
 	$cat_link = sptt_sanitize($cat_name);
 	$cat_link = $cat_link . ".html";
-	$cat_link = sptt_check_url($cat_link);
+	if ( $building != 'single' ) { $cat_link = sptt_check_url($cat_link); }
 	//$cat_link = preg_replace("/ /","-",$cat_link);
 	//$cat_link = preg_replace("/\?/","",$cat_link);
 	//$cat_link = strtolower($cat_link);
