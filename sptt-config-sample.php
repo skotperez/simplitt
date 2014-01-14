@@ -13,6 +13,11 @@ $line_length = "1024"; // max line lengh (increase in case you have longer lines
 $delimiter = ","; // field delimiter character
 $enclosure = '"'; // field enclosure character
 
+//// Google Drive connection
+// if you want to use google drive to host your data
+// if not leave this empty
+$key = ""; // google drive spreadsheet key 
+
 //// site vars
 $site_lang = "en-US"; // site language
 $site_tit = "simplitt"; // site title

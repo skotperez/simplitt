@@ -57,7 +57,8 @@ if ( count($posts) != 0 ) {
 		$sec_id = $categ_count + 1;
 		$main .= "<section><div class='section'><header><div class='section-tit'><h2>" .$sec_tit. "</h2></div></header><div id='section-" .$sec_id. "'>";
 		foreach ( $categ as $post ) {
-		if ( $post['athome'] == 'true' ) {
+		$athome = strtolower($post['athome']);
+		if ( $athome == 'true' || $athome == 1 ) {
 			$cat = $post['categ'];
 			$cat_perma = sptt_get_cat_link($cat);
 			$tit = $post['tit'];

@@ -68,48 +68,38 @@ function sptt_check_url($filename) {
 // end check if URL already exists
 
 
+if ( $key != '' ) {
+// if google key is set in sptt-config.php, so the content is in a google drive spreadsheet
 
-function sptt_get_data($whatdata) {
-// $whatdata parameter values: allposts, postsbycateg, categs
-	global $working_path; // base directory
-	global $site_path; // where the HTML files will be stored
-	global $img_path; // images folder
+	function sptt_get_data($whatdata) {
+	// $whatdata parameter values: allposts, postsbycateg, categs
 
-	global $csv_filename; // name (no extension)
-	global $line_length; // max line lengh (increase in case you have longer lines than 1024 characters)
-	global $delimiter; // field delimiter character
-	global $enclosure; // field enclosure character
+		global $working_path; // base directory
+		global $site_path; // where the HTML files will be stored
+		global $img_path; // images folder
 
-	// open the data file
-	$fp = fopen($csv_filename.".csv",'r');
-
-	// get data and store it in array
-	if ( $fp !== FALSE ) { // if the file exists and is readable
+		global $key;
+		$url = "https://spreadsheets.google.com/feeds/list/" .$key. "/od6/public/values?alt=json";
+		$file= file_get_contents($url);
+		$json = json_decode($file);
+		$rows = $json->{'feed'}->{'entry'};
 
 		// data array generation
 		$data = array();
-		$line = 0;
-		while ( ($fp_csv = fgetcsv($fp,$line_length,$delimiter,$enclosure)) !== FALSE ) { // begin main loop
-			if ( $line == 0 ) {}
-			elseif ( $fp_csv[0] != 'publish') {}
+		foreach ( $rows as $row ) {
+			$status = $row->{'gsx$status'}->{'$t'};
+			if ( $status  != 'publish' ) {}
 			else {
-				//$pattern = '"';
-				//$replace = "&quot;";
-				$cat = $fp_csv[1];
-				//$tit = str_replace($pattern,$replace,$fp_csv[2]);
-				$tit = $fp_csv[2];
-				//$desc = str_replace($pattern,$replace,$fp_csv[3]);
-				$desc = $fp_csv[3];
-				$img = $fp_csv[4];
+				$cat = $row->{'gsx$category'}->{'$t'};
+				$tit = $row->{'gsx$title'}->{'$t'};
+				$desc = $row->{'gsx$description'}->{'$t'};
+				$img = $row->{'gsx$image'}->{'$t'};
 				$img_alt = $tit;
-				$link = $fp_csv[5];
+				$link = $row->{'gsx$externallink'}->{'$t'};
 				$perma = sptt_sanitize($tit);
 				$perma = $perma. ".html";
 				$perma = sptt_check_url($perma);
-				//$perma = str_replace(" ","-",$perma);
-				//$perma = str_replace("?","",$perma);
-				//$perma = strtolower($perma);
-				$athome = $fp_csv[6];
+				$athome = $row->{'gsx$showathome'}->{'$t'};
 
 				if ( $whatdata == 'postsbycateg' ) {
 					$data[$cat][] = array(
@@ -140,18 +130,96 @@ function sptt_get_data($whatdata) {
 					$posts = array_keys($data);
 				} // end if order values
 
-			} // end if first line
-			$line++;
+			} // end if col1 = 'publish'
 
-		} // end while main loop	
-		fclose($fp); // close file pointer
+		} // end loop across gdrive file
+	return $posts;
+	}
+	// end get data from gdrive function
 
-	} else {
-		echo $cvs_filename. "doesn't exist or is not readable. Check it.";
-	} // end if file exist and readable
+} else {
+// if google key is not set in sptt-config.php, so content is in localhost
 
-return $posts;
-} // end sptt_all_posts function
+	function sptt_get_data($whatdata) {
+	// $whatdata parameter values: allposts, postsbycateg, categs
+	
+		global $working_path; // base directory
+		global $site_path; // where the HTML files will be stored
+		global $img_path; // images folder
+	
+		global $csv_filename; // name (no extension)
+		global $line_length; // max line lengh (increase in case you have longer lines than 1024 characters)
+		global $delimiter; // field delimiter character
+		global $enclosure; // field enclosure character
+	
+		// open the data file
+		$fp = fopen($csv_filename.".csv",'r');
+	
+		// get data and store it in array
+		if ( $fp !== FALSE ) { // if the file exists and is readable
+	
+			// data array generation
+			$data = array();
+			$line = 0;
+			while ( ($fp_csv = fgetcsv($fp,$line_length,$delimiter,$enclosure)) !== FALSE ) { // begin main loop
+				if ( $line == 0 ) {}
+				elseif ( $fp_csv[0] != 'publish') {}
+				else {
+					$cat = $fp_csv[1];
+					$tit = $fp_csv[2];
+					$desc = $fp_csv[3];
+					$img = $fp_csv[4];
+					$img_alt = $tit;
+					$link = $fp_csv[5];
+					$perma = sptt_sanitize($tit);
+					$perma = $perma. ".html";
+					$perma = sptt_check_url($perma);
+					$athome = $fp_csv[6];
+	
+					if ( $whatdata == 'postsbycateg' ) {
+						$data[$cat][] = array(
+							'categ' => $cat,
+							'tit' => $tit,
+							'desc' => $desc,
+							'img' => $img,
+							'img-alt' => $tit,
+							'link' => $link,
+							'perma' => $perma,
+							'athome' => $athome,
+						);
+						$posts = $data;
+					} elseif ( $whatdata == 'allposts' ) {
+						$data[] = array(
+							'categ' => $cat,
+							'tit' => $tit,
+							'desc' => $desc,
+							'img' => $img,
+							'img-alt' => $tit,
+							'link' => $link,
+							'perma' => $perma,
+						);
+						$posts = $data;
+					} elseif ( $whatdata == 'categs' ) {
+						$data[$cat][] = array(
+						);
+						$posts = array_keys($data);
+					} // end if order values
+	
+				} // end if first line
+				$line++;
+	
+			} // end while main loop	
+			fclose($fp); // close file pointer
+	
+		} else {
+			echo $cvs_filename. "doesn't exist or is not readable. Check it.";
+		} // end if file exist and readable
+	
+	return $posts;
+	} // end sptt_all_posts function
+
+} // end if google key is set in sptt-config.php
+
 
 // get category function
 function sptt_get_cat_link($cat_name) {
