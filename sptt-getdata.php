@@ -93,6 +93,8 @@ if ( $key != '' ) {
 				$cat = $row->{'gsx$category'}->{'$t'};
 				$tit = $row->{'gsx$title'}->{'$t'};
 				$desc = $row->{'gsx$description'}->{'$t'};
+				$content = $row->{'gsx$fullcontent'}->{'$t'};
+				if ( $desc == '' ) { $desc = $content; }
 				$img = $row->{'gsx$image'}->{'$t'};
 				$img_alt = $tit;
 				$link = $row->{'gsx$externallink'}->{'$t'};
@@ -106,6 +108,7 @@ if ( $key != '' ) {
 						'categ' => $cat,
 						'tit' => $tit,
 						'desc' => $desc,
+						'content' => $content,
 						'img' => $img,
 						'img-alt' => $tit,
 						'link' => $link,
@@ -118,6 +121,7 @@ if ( $key != '' ) {
 						'categ' => $cat,
 						'tit' => $tit,
 						'desc' => $desc,
+						'content' => $content,
 						'img' => $img,
 						'img-alt' => $tit,
 						'link' => $link,
@@ -168,19 +172,22 @@ if ( $key != '' ) {
 					$cat = $fp_csv[1];
 					$tit = $fp_csv[2];
 					$desc = $fp_csv[3];
-					$img = $fp_csv[4];
+					$content = $fp_csv[4];
+					if ( $desc == '' ) { $desc == $content; }
+					$img = $fp_csv[5];
 					$img_alt = $tit;
-					$link = $fp_csv[5];
+					$link = $fp_csv[6];
 					$perma = sptt_sanitize($tit);
 					$perma = $perma. ".html";
 					$perma = sptt_check_url($perma);
-					$athome = $fp_csv[6];
+					$athome = $fp_csv[7];
 	
 					if ( $whatdata == 'postsbycateg' ) {
 						$data[$cat][] = array(
 							'categ' => $cat,
 							'tit' => $tit,
 							'desc' => $desc,
+							'content' => $content,
 							'img' => $img,
 							'img-alt' => $tit,
 							'link' => $link,
@@ -193,6 +200,7 @@ if ( $key != '' ) {
 							'categ' => $cat,
 							'tit' => $tit,
 							'desc' => $desc,
+							'content' => $content,
 							'img' => $img,
 							'img-alt' => $tit,
 							'link' => $link,
@@ -243,8 +251,8 @@ function sptt_post_has_image() {
 
 // if post has description
 function sptt_post_has_description() {
-	global $desc;
-	if ( $desc != '' ) { return true; }
+	global $content;
+	if ( $content != '' ) { return true; }
 	else { return false; }
 } // end if post has description
 
@@ -285,6 +293,7 @@ function sptt_get_post_data($field) {
 	global $cat;
 	global $tit;
 	global $desc;
+	global $content;
 	global $img;
 	global $img_alt;
 	global $link;
@@ -292,12 +301,13 @@ function sptt_get_post_data($field) {
 	$perma = sptt_check_url($perma);
 	if ( $field == 'category' ) { $post_data = $cat; }
 	elseif ( $field == 'title' ) { $post_data = $tit; }
-	elseif ( $field == 'content' ) { $post_data = $desc; }
+	elseif ( $field == 'description' ) { $post_data = $desc; }
+	elseif ( $field == 'content' ) { $post_data = $content; }
 	elseif ( $field == 'image_url' ) { $post_data = $img; }
 	elseif ( $field == 'image_alt' ) { $post_data = $img_alt; }
 	elseif ( $field == 'more_link' ) { $post_data = $link; }
 	elseif ( $field == 'permalink' ) { $post_data = $perma; }
-	else { $post_data = "<span style='background-color: yellow; color: black;'>Wrong parameter for sptt_get_post_data(). Try one of the following: category, title, content, image_url, image_alt, more_link, permalink.</span>"; }
+	else { $post_data = "<span style='background-color: yellow; color: black;'>Wrong parameter for sptt_get_post_data(). Try one of the following: category, title, description, content, image_url, image_alt, more_link, permalink.</span>"; }
 	return $post_data;
 } // end get data from a post
 

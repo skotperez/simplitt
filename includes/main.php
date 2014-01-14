@@ -6,7 +6,7 @@
 	<div class='box-text'>
 		<header><h3 class='box-tit'><a href='<?php echo sptt_get_post_data('permalink'); ?>' title='Enlace permanente a <?php echo sptt_get_post_data('title'); ?>'><?php echo sptt_get_post_data('title'); ?></a></h3></header>
 		<?php if ( sptt_post_has_description() ) { ?>
-			<div class='box-desc'><?php echo sptt_get_post_data('content'); ?></div>
+			<div class='box-desc'><?php echo sptt_get_post_data('description'); ?></div>
 		<?php } ?>
 	</div>
 	<footer><ul class='box-footer'>
